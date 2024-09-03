@@ -23,7 +23,7 @@ function Login() {
                 const result = await response.json();
                 setMessage(result.message);
             } else {
-                setMessage('Invalid username or password');
+                setMessage('Invalid username or password. Please Try again');
             }
         } catch (error) {
             setMessage('Error logging in');
