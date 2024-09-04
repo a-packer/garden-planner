@@ -28,8 +28,8 @@ const PlantList = () => {
       <h2>PlantList</h2>
       {userPlants.map((plant) => 
         <>
-          <label>{plant.plantName}</label>
-          <input type="checkbox" key={plant.plantName}/>
+          <label>{plant.species}</label>
+          <input type="checkbox" key={plant.species}/>
           <br></br>
         </>
       )}

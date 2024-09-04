@@ -11,7 +11,7 @@ func CreatePlantsTable(db *sql.DB) error {
 	createPlantsTableSQL := `
     CREATE TABLE IF NOT EXISTS plants (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      plantName TEXT NOT NULL,
+      species TEXT NOT NULL,
       numWeeksIn INT,
       weeksRelOut INT,
       totalGrowth INT
@@ -33,9 +33,9 @@ func CreatePlantsTable(db *sql.DB) error {
 	return nil
 }
 
-func InsertPlant(db *sql.DB, plantName string, numWeeksIn int, weeksRelOut int, totalGrowth int) error {
+func InsertPlant(db *sql.DB, species string, numWeeksIn int, weeksRelOut int, totalGrowth int) error {
 	log.Println("Inserting plant ...")
-	insertPlantSQLSQL := `INSERT INTO plants (plantName, numWeeksIn, weeksRelOut, totalGrowth) VALUES (?, ?, ?, ?)`
+	insertPlantSQLSQL := `INSERT INTO plants (species, numWeeksIn, weeksRelOut, totalGrowth) VALUES (?, ?, ?, ?)`
 	statement, err := db.Prepare(insertPlantSQLSQL)
 	if err != nil {
 		log.Println("Error preparing insert plant statement:", err)
@@ -43,7 +43,7 @@ func InsertPlant(db *sql.DB, plantName string, numWeeksIn int, weeksRelOut int, 
 	}
 	defer statement.Close() // Ensure statement is closed after execution
 
-	_, err = statement.Exec(plantName, numWeeksIn, weeksRelOut, totalGrowth)
+	_, err = statement.Exec(species, numWeeksIn, weeksRelOut, totalGrowth)
 	if err != nil {
 		log.Println("Error executing insert plant statement:", err)
 		return err
@@ -53,7 +53,7 @@ func InsertPlant(db *sql.DB, plantName string, numWeeksIn int, weeksRelOut int, 
 }
 
 func DisplayPlants(db *sql.DB) error {
-	rows, err := db.Query("SELECT * FROM plants ORDER BY plantName")
+	rows, err := db.Query("SELECT * FROM plants ORDER BY species")
 	if err != nil {
 		log.Println("Error querying plants:", err)
 		return err
@@ -62,15 +62,15 @@ func DisplayPlants(db *sql.DB) error {
 
 	for rows.Next() {
 		var id int
-		var plantName string
+		var species string
 		var numWeeksIn int
 		var weeksRelOut int
 		var totalGrowth int
-		if err := rows.Scan(&id, &plantName, &numWeeksIn, &weeksRelOut, &totalGrowth); err != nil {
+		if err := rows.Scan(&id, &species, &numWeeksIn, &weeksRelOut, &totalGrowth); err != nil {
 			log.Println("Error scanning row:", err)
 			return err
 		}
-		log.Println("User: ", id, " ", plantName, " ", totalGrowth)
+		log.Println("User: ", id, " ", species, " ", totalGrowth)
 	}
 
 	return nil
