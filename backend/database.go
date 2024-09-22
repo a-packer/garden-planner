@@ -39,20 +39,6 @@ func InitDB() (*sql.DB, error) {
 		return nil, err
 	}
 
-	// INSERT AND DISPLAY RECORDS for testing
-	if err := InsertUser(db, "Liana", "d7g8h9h0", "05/01"); err != nil {
-		db.Close()
-		return nil, err
-	}
-	if err := InsertUser(db, "Dia", "d7g8h9h0", "05/01"); err != nil {
-		db.Close()
-		return nil, err
-	}
-	if err := DisplayUsers(db); err != nil {
-		db.Close()
-		return nil, err
-	}
-
 	/////////// Plants ///////////
 	
 	// Ensure that the database connection remains open for the duration of the initialization.
@@ -62,18 +48,18 @@ func InitDB() (*sql.DB, error) {
 	}
 
 	// // INSERT AND DISPLAY RECORDS for testing
-	// if err := InsertPlant(db, "Basil", 2, 3, 4); err != nil {
-	// 	db.Close()
-	// 	return nil, err
-	// }
-	// if err := InsertPlant(db, "Radish", -1, 2, 5); err != nil {
-	// 	db.Close()
-	// 	return nil, err
-	// }
-	// if err := DisplayPlants(db); err != nil {
-	// 	db.Close()
-	// 	return nil, err
-	// }
+	if err := InsertPlant(db, "Basil", 2, 3, 4); err != nil {
+		db.Close()
+		return nil, err
+	}
+	if err := InsertPlant(db, "Radish", -1, 2, 5); err != nil {
+		db.Close()
+		return nil, err
+	}
+	if err := DisplayPlants(db); err != nil {
+		db.Close()
+		return nil, err
+	}
 
 	return db, nil
 }

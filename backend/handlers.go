@@ -1,11 +1,42 @@
 package backend
 
 import (
+	"database/sql"
 	"encoding/json"
+	"log"
 	"net/http"
 
-	"database/sql"
+	"golang.org/x/crypto/bcrypt"
 )
+
+// RegisterHandler handles user registration requests
+func RegisterHandler(db *sql.DB) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		var user struct {
+			Username string `json:"registerUsername"`  // these names need to match 
+			Password string `json:"registerPassword"`  // what we're sending in the payload
+		}
+		if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
+			http.Error(w, "Invalid request payload", http.StatusBadRequest)
+			return
+		}
+
+		hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
+		if err != nil {
+			http.Error(w, "Error creating password", http.StatusInternalServerError)
+			return
+		}
+
+		if err := InsertUser(db, user.Username, hashedPassword, "05/01"); err != nil {
+			db.Close()
+		}
+
+		w.WriteHeader(http.StatusCreated)
+		log.Println(w, "User registered successfully")
+		DisplayUsers(db)
+	}
+
+}
 
 // LoginHandler handles user login requests
 func LoginHandler(db *sql.DB) http.HandlerFunc {

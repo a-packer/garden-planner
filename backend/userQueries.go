@@ -3,6 +3,7 @@ package backend
 import (
 	"database/sql"
 	"log"
+
 	"golang.org/x/crypto/bcrypt"
 
 	_ "github.com/mattn/go-sqlite3"
@@ -33,7 +34,7 @@ func CreateUsersTable(db *sql.DB) error {
 	return nil
 }
 
-func InsertUser(db *sql.DB, username string, password string, frostdate string) error {
+func InsertUser(db *sql.DB, username string, password []byte, frostdate string) error {
 	log.Println("Inserting user ...")
 	insertUserSQL := `INSERT INTO users (username, password, frostdate) VALUES (?, ?, ?)`
 	statement, err := db.Prepare(insertUserSQL)
@@ -69,7 +70,7 @@ func DisplayUsers(db *sql.DB) error {
 			log.Println("Error scanning row:", err)
 			return err
 		}
-		log.Println("User: ", id, " ", username, " ", password, frostdate)
+		log.Println("Username: ", username, " ", password, frostdate)
 	}
 
 	return nil
@@ -77,25 +78,28 @@ func DisplayUsers(db *sql.DB) error {
 
 // VerifyLogin checks if the provided username and password are correct
 func VerifyLogin(db *sql.DB, username, password string) bool {
+	log.Println("username", username)
 	var hashedPassword string
-  err := db.QueryRow("SELECT password FROM users WHERE username = ?", username).Scan(&hashedPassword)
-  if err != nil {
-    // If there's an error querying the database, the user doesn't exist or another issue occurred
-    return false
-  }
+	err := db.QueryRow("SELECT password FROM users WHERE username = ?", username).Scan(&hashedPassword)
+	if err != nil {
+		// If there's an error querying the database, the user doesn't exist or another issue occurred
+		log.Println(err)
+		return false
+	}
 
-  // Compare the provided password with the hashed password
-  err = bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
-  return err == nil
+	// Compare the provided password with the hashed password
+	log.Println("hashed and pword", hashedPassword, password)
+	err = bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
+	return err == nil
 }
 
 // GetUserByName retrieves a user from the database by their username
 func GetUserByName(db *sql.DB, username string) (int, string, error) {
-  var id int
-  var password string
-  err := db.QueryRow("SELECT id, password FROM users WHERE username = ?", username).Scan(&id, &password)
-  if err != nil {
-    return 0, "", err
-  }
-  return id, password, nil
+	var id int
+	var password string
+	err := db.QueryRow("SELECT id, password FROM users WHERE username = ?", username).Scan(&id, &password)
+	if err != nil {
+		return 0, "", err
+	}
+	return id, password, nil
 }

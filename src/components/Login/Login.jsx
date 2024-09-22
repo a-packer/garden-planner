@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Login.css'
+import '../common.css';
 
 function Login() {
     const [username, setUsername] = useState('');
@@ -32,18 +32,30 @@ function Login() {
 
 
     return (
-        <div className='loginWrapper'>
-            <h2 className='login-header'>Login</h2>
+        <div className='login-reg-wrapper'>
+            <h2 className='login-reg-header'>Login</h2>
             <form onSubmit={handleSubmitLogin}>
-                <div className='login-form-div'>
-                    <label className='login-form-label'>Username:</label>
-                    <input type='text' value={username} onChange={(e) => setUsername(e.target.value)} required />
+                <div className='login-reg-form-div'>
+                    <img src={require('../../components/user.svg').default} alt='mySvgImage' className="login-reg-icon" />
+                    <input 
+                        placeholder="username" 
+                        type='text'
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                        className="login-reg-input" />
                 </div>
-                <div className='login-form-div'>
-                    <label className='login-form-label'>Password:</label>
-                    <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} required />
+                <div className='login-reg-form-div'>
+                  <img src={require('../../components/lock-solid.svg').default} alt='mySvgImage' className="login-reg-icon" />    
+                   <input 
+                    placeholder="password" 
+                    type='password'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    className="login-reg-input" />
                 </div>
-                <button type='submit'>Login</button>
+                <button className="login-reg-button" type='submit'>Login</button>
             </form>
             {message && <p>{message}</p>}
         </div>

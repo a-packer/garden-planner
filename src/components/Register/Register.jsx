@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import '../common.css';
 
 const Register = () => {
 
@@ -28,18 +29,29 @@ const Register = () => {
   };
 
   return (
-    <div className="registerWrapper">
-      <h2>Register New User</h2>
+    <div className="login-reg-wrapper">
+      <h2 className="login-reg-header">Register New User</h2>
       <form onSubmit={handleSubmitRegister}>
-          <div>
-              <label>Username:</label>
-              <input type="text" value={registerUsername} onChange={(e) => setRegisterUsername(e.target.value)} required />
+          <div className="login-reg-form-div">
+            <img src={require('../../components/user.svg').default} alt='mySvgImage' className="login-reg-icon" />    
+            <input 
+              placeholder="username"
+              type="text" value={registerUsername}
+              onChange={(e) => setRegisterUsername(e.target.value)}
+              required
+              className="login-reg-input" />
           </div>
-          <div>
-              <label>Password:</label>
-              <input type="password" value={registerPassword} onChange={(e) => setRegisterPassword(e.target.value)} required />
+          <div className="login-reg-form-div">
+            <img src={require('../../components/lock-solid.svg').default} alt='mySvgImage' className="login-reg-icon" />    
+            <input 
+              placeholder="password"
+              type="password"
+              value={registerPassword}
+              onChange={(e) => setRegisterPassword(e.target.value)}
+              required
+              className="login-reg-input" />
           </div>
-          <button type="submit">Register</button>
+          <button className="login-reg-button" type="submit">Register</button>
       </form>
       {message && <p>{message}</p>}
     </div>

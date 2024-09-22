@@ -1,10 +1,10 @@
 import React from 'react'
-import "./Header.css"
+import "./TableHeader.css"
 
-const Header = () => {
+const TableHeader = () => {
   return (
     <div className="header">
-      <h1>Planting Schedule</h1>
+      <h1 className="tableHeaderTitle">Planting Schedule</h1>
       <div className="colorKey">
         <h2>Start Seeds Indoors</h2>
         <h2>Plant Seed/Transplant</h2>
@@ -14,4 +14,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default TableHeader

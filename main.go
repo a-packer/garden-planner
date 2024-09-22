@@ -21,7 +21,7 @@ func main() {
 
 	// API endpoints
 	router.HandleFunc("/login", backend.LoginHandler(db)).Methods(http.MethodPost)
-	// router.HandleFunc("/register", backend.RegisterHandler(db)).Methods(http.MethodPost)
+	router.HandleFunc("/register", backend.RegisterHandler(db)).Methods(http.MethodPost)
 	router.HandleFunc("/plants", backend.GetAllPlantsHandler(db)).Methods(http.MethodGet)
 	// router.HandleFunc("/gardens", backend.GetUserPlantsHandler(db)).Methods(http.MethodGet)
 
