@@ -1,7 +1,11 @@
 import React, {useState} from 'react';
+import Plant from './Plant';
+import './PlantList.css';
 
 const PlantList = () => {
   const [userPlants, setUserPlants] = useState([])
+  const [plantsDisplayed, setPlantDisplayed] = useState(false)
+
   const displayPlants = async (e) => {
     e.preventDefault();
     try {
@@ -17,24 +21,29 @@ const PlantList = () => {
     } catch (error) {
       console.log('Error with fetching plants');
     }
+    setPlantDisplayed(true)
   };
-  // console.log('userPlants', userPlants)
-  // console.log('displayUserPlants', displayPlants)
+
+  const hidePlants = () => {
+    setPlantDisplayed(false)
+  }
+
 
   return (
-    <>
-    <br></br>
-     <button onClick={displayPlants}>Display All Plants</button>
-      <h2>PlantList</h2>
-      {userPlants.map((plant) => 
-        <>
-          <label>{plant.species}</label>
-          <input type="checkbox" key={plant.species}/>
-          <br></br>
-        </>
-      )}
-     
-    </>
+    <div className="plantList-wrapper">
+
+     <button 
+      onClick={plantsDisplayed ? hidePlants : displayPlants} 
+      className="plant-list-button">
+      {plantsDisplayed ? 'Hide Plant List' : 'Display Plant List'}
+     </button>
+     <button className="plant-list-button">Update Planner</button>
+
+     <form className={plantsDisplayed ? "plantList-form" : "plantList-form-hidden"}>
+      {userPlants.map((plant) => <Plant plant={plant} />)}   
+     </form>
+      
+    </div>
 
   )
 }

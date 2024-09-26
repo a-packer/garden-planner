@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {TableHeader, PageHeader, PageBody} from './components'
+import {PageHeader, PageBody} from './components'
 
 function App() {
 
@@ -8,7 +8,6 @@ function App() {
   return (
     <div className="appBody"> 
       <PageHeader setCurrentPage={setCurrentPage} currentPage={currentPage}/>
-      <TableHeader /> 
       <PageBody currentPage={currentPage}/>  
     </div>
   );

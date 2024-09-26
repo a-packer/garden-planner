@@ -1,0 +1,17 @@
+.plantList-wrapper {
+
+}
+
+.plantList-form-hidden {
+  display: none;
+}
+
+.plant-list-button {
+  background: salmon;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+  margin-right: 10px;
+}

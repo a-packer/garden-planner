@@ -1,7 +1,3 @@
-.tableHeaderTitle {
-  padding-left: 20px;
-}
-
 .colorKey {
   display: flex;
   justify-content: space-between;
@@ -9,4 +5,5 @@
   opacity: 0.8;
   padding: 0 20px;
   color: white;
+  margin-bottom: 20px;
 }

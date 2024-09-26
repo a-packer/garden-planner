@@ -5,6 +5,7 @@ const PageHeader = ({setCurrentPage, currentPage}) => {
 
   return (
     <div className='pageHeaderWrapper'>
+      <button onClick={() => setCurrentPage('guideChart')} className="tableHeaderTitle">Planting Schedule</button>
       <button onClick={() => setCurrentPage('login')} className='pageHeaderNavButton'>Login</button>
       <button onClick={() => setCurrentPage('register')} className='pageHeaderNavButton'>Register</button>
       <label className="pageHeaderLabel">Frost Date: </label>

@@ -56,6 +56,10 @@ func InitDB() (*sql.DB, error) {
 		db.Close()
 		return nil, err
 	}
+	if err := InsertPlant(db, "Tomato", -1, 3, 3); err != nil {
+		db.Close()
+		return nil, err
+	}
 	if err := DisplayPlants(db); err != nil {
 		db.Close()
 		return nil, err

@@ -70,7 +70,7 @@ func DisplayPlants(db *sql.DB) error {
 			log.Println("Error scanning row:", err)
 			return err
 		}
-		log.Println("User: ", id, " ", species, " ", totalGrowth)
+		log.Println("Plant: ", id, " ", species, " ", totalGrowth)
 	}
 
 	return nil

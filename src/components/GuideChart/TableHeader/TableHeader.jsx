@@ -4,7 +4,6 @@ import "./TableHeader.css"
 const TableHeader = () => {
   return (
     <div className="header">
-      <h1 className="tableHeaderTitle">Planting Schedule</h1>
       <div className="colorKey">
         <h2>Start Seeds Indoors</h2>
         <h2>Plant Seed/Transplant</h2>

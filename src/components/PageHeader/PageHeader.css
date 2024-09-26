@@ -1,12 +1,20 @@
 .pageHeaderWrapper {
   display: flex;
   padding: 20px;
+  margin-bottom: 20px;
   border-bottom: 5px solid salmon;
   align-items: center;
 }
 
+.tableHeaderTitle {
+  background: none;
+  font-size: 35px;
+  color: green; 
+  border: none;
+}
+
 .pageHeaderNavButton {
-  margin-right: 10px;
+  margin: 0 10px;
   background: green;
   border: none;
   padding: 10px 20px;
