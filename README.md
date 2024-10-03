@@ -1,3 +1,10 @@
+TODO: 
+- create link to the planting schedule page in the page header to the left of the Login/Reg buttons
+- garden plan page
+  - list of all plants (checkboxes)
+  - chart with selected list of plants (guide chart)
+
+
 ## Available Scripts
 
 In the project directory, you can run:

@@ -1,5 +1,9 @@
 .plantList-wrapper {
+  padding: 10px 20px;
+}
 
+.plantList-form {
+  padding: 10px 0;
 }
 
 .plantList-form-hidden {
@@ -7,11 +11,18 @@
 }
 
 .plant-list-button {
-  background: salmon;
+  background: linear-gradient(45deg, #08b3e5, #1D80AF, #1C61B1,#1D80AF, #08b3e5);
+  background-size: 150% 100%; /* Double the width to allow for smooth movement */
+  background-position: left;  /* Start position */
   border: none;
   padding: 10px 20px;
   font-weight: bold;
   font-size: 18px;
   color: white;
   margin-right: 10px;
+  transition: background-position 1s ease; /* Smooth transition for background position */
+}
+
+.plant-list-button:hover {
+  background-position: right; /* On hover, move the gradient */
 }

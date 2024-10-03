@@ -1,15 +1,11 @@
 .login-reg-wrapper {
-  width: 200px;
-  background: rgb(212, 212, 212);
-  padding-bottom: 20px;
   width: 100%;
+  min-height: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.login-reg-header {
-  padding-top: 15px;
+  justify-content: center;
+  padding-bottom: 20px;
 }
 
 .login-reg-wrapper form {
@@ -27,6 +23,7 @@
 .login-reg-input {
   padding: 10px 0 10px 40px;
   font-size: 18px;
+  border: 2px solid grey;
 }
 
 .login-reg-icon {
@@ -36,10 +33,12 @@
 }
 
 .login-reg-button {
-  background: green;
-  border: none;
-  padding: 10px 20px;
-  font-weight: bold;
+  background: white;
+  border: 5px solid #08B3E5;
+  color: #08b3e5;
   font-size: 18px;
-  color: white;
+  font-weight: 700;
+  padding: 10px 20px;
+  margin: 10px;
 }
+

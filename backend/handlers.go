@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/gorilla/mux"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -13,8 +14,8 @@ import (
 func RegisterHandler(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var user struct {
-			Username string `json:"registerUsername"`  // these names need to match 
-			Password string `json:"registerPassword"`  // what we're sending in the payload
+			Username string `json:"registerUsername"` // these names need to match
+			Password string `json:"registerPassword"` // what we're sending in the payload
 		}
 		if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
 			http.Error(w, "Invalid request payload", http.StatusBadRequest)
@@ -100,6 +101,46 @@ func GetAllPlantsHandler(db *sql.DB) http.HandlerFunc {
 		if err := json.NewEncoder(w).Encode(plants); err != nil {
 			http.Error(w, "Error encoding plants", http.StatusInternalServerError)
 			return
+		}
+	}
+}
+
+func GetPlantHandler(db *sql.DB) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		// Extract the species from the URL
+		vars := mux.Vars(r)
+		species := vars["plant"]
+
+		// Define a Plant struct to hold the query result
+		var plant struct {
+			ID          int    `json:"id"`
+			Species     string `json:"species"`
+			NumWeeksIn  int    `json:"numWeeksIn"`
+			WeeksRelOut int    `json:"weeksRelOut"`
+			TotalGrowth int    `json:"totalGrowth"`
+		}
+
+		// Query the database for the plant
+		query := "SELECT id, species, numWeeksIn, weeksRelOut, totalGrowth FROM plants WHERE species = ?"
+		err := db.QueryRow(query, species).Scan(
+			&plant.ID, &plant.Species, &plant.NumWeeksIn, &plant.WeeksRelOut, &plant.TotalGrowth,
+		)
+
+		// Handle errors
+		if err != nil {
+			if err == sql.ErrNoRows {
+				http.Error(w, "Plant not found", http.StatusNotFound)
+				return
+			}
+			log.Printf("Error retrieving plant: %v", err)
+			http.Error(w, "Server error", http.StatusInternalServerError)
+			return
+		}
+
+		// Encode the plant as JSON and return the response
+		w.Header().Set("Content-Type", "application/json")
+		if err := json.NewEncoder(w).Encode(plant); err != nil {
+			http.Error(w, "Error encoding plant", http.StatusInternalServerError)
 		}
 	}
 }

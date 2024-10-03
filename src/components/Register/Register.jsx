@@ -30,7 +30,6 @@ const Register = () => {
 
   return (
     <div className="login-reg-wrapper">
-      <h2 className="login-reg-header">Register New User</h2>
       <form onSubmit={handleSubmitRegister}>
           <div className="login-reg-form-div">
             <img src={require('../../components/user.svg').default} alt='mySvgImage' className="login-reg-icon" />    

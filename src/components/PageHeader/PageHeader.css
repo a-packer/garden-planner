@@ -1,32 +1,44 @@
 .pageHeaderWrapper {
   display: flex;
-  padding: 20px;
+  padding: 25px 35px 15px 35px;
   margin-bottom: 20px;
-  border-bottom: 5px solid salmon;
+  border-bottom: 5px solid #1D80AF;
   align-items: center;
 }
 
 .tableHeaderTitle {
   background: none;
   font-size: 35px;
-  color: green; 
+  color:  #1D80AF; 
+  font-weight: bold;
   border: none;
+  position: relative;
+}
+
+.tableHeaderTitle:before {
+  content: '';
+  background-image: url('./leaf.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 30px; /* Desired width */
+  height: 40px; /* Desired height */
+  position: absolute;
+  left: -20px;
 }
 
 .pageHeaderNavButton {
   margin: 0 10px;
-  background: green;
+  background: linear-gradient(45deg, #1EA9AC, #34b9be, #61cbab, #77cdc2, #61cbab, #34b9be, #1EA9AC);
+  background-size: 150% 100%; /* Double the width to allow for smooth movement */
+  background-position: left;  /* Start position */
+  transition: background-position 1s ease; /* Smooth transition for background position */
   border: none;
   padding: 10px 20px;
   font-weight: bold;
+  font-size: 16px;
   color: white;
 }
-
-.pageHeaderLabel {
-  margin-right: 5px;
+.pageHeaderNavButton:hover {
+  background-position: right; /* On hover, move the gradient */
 }
 
-.pageHeaderDateInput {
-  width: 50px;
-  padding: 10px;
-}

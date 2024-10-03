@@ -1,5 +1,6 @@
 import React from 'react'
-import './PageHeader.css'
+import FrostDateForm from '../FrostDateForm';
+import './PageHeader.css';
 
 const PageHeader = ({setCurrentPage, currentPage}) => {
 
@@ -8,8 +9,7 @@ const PageHeader = ({setCurrentPage, currentPage}) => {
       <button onClick={() => setCurrentPage('guideChart')} className="tableHeaderTitle">Planting Schedule</button>
       <button onClick={() => setCurrentPage('login')} className='pageHeaderNavButton'>Login</button>
       <button onClick={() => setCurrentPage('register')} className='pageHeaderNavButton'>Register</button>
-      <label className="pageHeaderLabel">Frost Date: </label>
-      <input type="text" placeholder="mm/dd" className="pageHeaderDateInput"></input>
+      <FrostDateForm />
     </div>
   )
 }
