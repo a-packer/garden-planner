@@ -8,11 +8,14 @@ function App() {
 
   return (
     <div className="appBody"> 
-      <PageHeader setCurrentPage={setCurrentPage} currentPage={currentPage}/>
+      <PageHeader 
+        setCurrentPage={setCurrentPage} 
+        setFrostDate={setFrostDate}
+        frostDate={frostDate} 
+      />
       <PageBody 
         currentPage={currentPage} 
-        frostDate={frostDate} 
-        setFrostDate={setFrostDate}
+        frostDate={frostDate}
       />  
     </div>
   );

@@ -4,7 +4,7 @@ import PlantList from '../PlantList'
 import BarChart from './BarChart'
 import './GuideChart.css'
 
-const GuideChart = ({selectedPlants, setSelectedPlants, frostDate, setFrostDate}) => {
+const GuideChart = ({selectedPlants, setSelectedPlants, frostDate}) => {
 
   const [selectedPlantData, setSelectedPlantData] = useState([])
 

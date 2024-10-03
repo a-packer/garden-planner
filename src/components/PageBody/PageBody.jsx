@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {Login, Register, GuideChart} from "../../components"
 import './PageBody.css'
 
-const PageBody = ({currentPage, frostDate, setFrostDate}) => {
+const PageBody = ({currentPage, frostDate}) => {
   
   const [selectedPlants, setSelectedPlants] = useState([])
 
@@ -15,8 +15,7 @@ const PageBody = ({currentPage, frostDate, setFrostDate}) => {
       return <GuideChart 
         selectedPlants={selectedPlants} 
         setSelectedPlants={setSelectedPlants}
-        frostDate={frostDate} 
-        setFrostDate={setFrostDate}
+        frostDate={frostDate}
       />;
   }
 }

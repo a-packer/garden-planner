@@ -1,0 +1,16 @@
+.frostDateForm {
+  display: flex;
+}
+
+.pageHeaderDateInput {
+  width: 50px;
+  padding: 10px;
+  border: solid 2px #1D80AF;
+}
+
+.pageHeaderLabel {
+  margin: 0 10px;
+  color: #1d80af;
+  font-weight: bold;
+  font-size: 18px;
+}
