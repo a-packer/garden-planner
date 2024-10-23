@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Login, Register, GuideChart} from "../../components"
+import {Login, Register, GuideChartArea, PlantList} from "../../components"
 import './PageBody.css'
 
 const PageBody = ({currentPage, frostDate}) => {
@@ -12,11 +12,15 @@ const PageBody = ({currentPage, frostDate}) => {
     case 'register':
       return <Register />;
     default:
-      return <GuideChart 
-        selectedPlants={selectedPlants} 
-        setSelectedPlants={setSelectedPlants}
-        frostDate={frostDate}
-      />;
+      return <>
+        <PlantList selectedPlants={selectedPlants} setSelectedPlants={setSelectedPlants} />
+        <GuideChartArea 
+          selectedPlants={selectedPlants} 
+          setSelectedPlants={setSelectedPlants}
+          frostDate={frostDate}
+        />;
+      </>
+      
   }
 }
 

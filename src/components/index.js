@@ -1,4 +1,4 @@
-export {default as GuideChart} from './GuideChart'
+export {default as GuideChartArea} from './GuideChartArea'
 export {default as Login} from './Login'
 export {default as PageBody} from './PageBody'
 export {default as PageHeader} from './PageHeader'

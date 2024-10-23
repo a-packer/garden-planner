@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import TableHeader from './TableHeader';
-import PlantList from '../PlantList';
-import BarChart from './BarChart';
+import GuideChart from './GuideChart';
 import {getPlantData} from './HelperFunctions';
-import './GuideChart.css';
+import './GuideChartArea.css';
 
-const GuideChart = ({selectedPlants, setSelectedPlants, frostDate}) => {
+const GuideChartArea = ({selectedPlants, frostDate}) => {
 
   const [selectedPlantData, setSelectedPlantData] = useState([])
 
@@ -22,15 +21,15 @@ const GuideChart = ({selectedPlants, setSelectedPlants, frostDate}) => {
 
   return (
     <div className="guidechart-wrapper">
-      <PlantList selectedPlants={selectedPlants} setSelectedPlants={setSelectedPlants} />
+      
       <div className="guidechart-chart-wrapper">
         <TableHeader />
         <div className="svg-wrapper">
-          <BarChart data={selectedPlantData} frostDate={frostDate} />
+          <GuideChart data={selectedPlantData} frostDate={frostDate} />
         </div>    
       </div>
     </div>
   )
 }
 
-export default GuideChart
+export default GuideChartArea;
