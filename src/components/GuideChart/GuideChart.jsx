@@ -38,17 +38,16 @@ const GuideChart = ({selectedPlants, setSelectedPlants, frostDate}) => {
     }
     fetchData();
   }, [selectedPlants])
-
-  console.log('frostDate', frostDate)
+  console.log(selectedPlantData)
 
   return (
     <div className="guidechart-wrapper">
       <PlantList selectedPlants={selectedPlants} setSelectedPlants={setSelectedPlants} />
       <div className="guidechart-chart-wrapper">
-        {selectedPlants.map((selectedPlant) => <li>{selectedPlant}</li>)}
         <TableHeader />
-        <h1>TODO: frost date: pass down as props. state set in page header</h1>
-        <BarChart data={selectedPlantData} />
+        <div className="svg-wrapper">
+          <BarChart data={selectedPlantData} frostDate={frostDate} />
+        </div>    
       </div>
     </div>
   )

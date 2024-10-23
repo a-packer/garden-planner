@@ -37,7 +37,6 @@ const PlantList = ({selectedPlants, setSelectedPlants}) => {
       className="plant-list-button">
       {plantsDisplayed ? 'Hide Plant List' : 'Display Plant List'}
      </button>
-     <button className="plant-list-button">Update Planner</button>
 
      <form className={plantsDisplayed ? "plantList-form" : "plantList-form-hidden"}>
       {listOfPlants.map((plant) => <Plant plant={plant} selectedPlants={selectedPlants} setSelectedPlants={setSelectedPlants}/>)}   

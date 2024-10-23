@@ -40,7 +40,7 @@ func InitDB() (*sql.DB, error) {
 	}
 
 	/////////// Plants ///////////
-	
+
 	// Ensure that the database connection remains open for the duration of the initialization.
 	if err := CreatePlantsTable(db); err != nil {
 		db.Close()
@@ -48,15 +48,15 @@ func InitDB() (*sql.DB, error) {
 	}
 
 	// // INSERT AND DISPLAY RECORDS for testing
-	if err := InsertPlant(db, "Basil", 2, 3, 4); err != nil {
+	if err := InsertPlant(db, "Basil", 5, 1, 12); err != nil {
 		db.Close()
 		return nil, err
 	}
-	if err := InsertPlant(db, "Radish", -1, 2, 5); err != nil {
+	if err := InsertPlant(db, "Beets", 5, -2, 20); err != nil {
 		db.Close()
 		return nil, err
 	}
-	if err := InsertPlant(db, "Tomato", -1, 3, 3); err != nil {
+	if err := InsertPlant(db, "Tomato", 7, 2, 14); err != nil {
 		db.Close()
 		return nil, err
 	}
