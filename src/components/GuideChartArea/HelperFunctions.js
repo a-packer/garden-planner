@@ -57,25 +57,32 @@ export const createMonthLabels = (svg, xScale, height) => {
     .attr("text-anchor", "middle"); 
 }
 
-export const createBlueGradient = (svg) => {
+export const createGradients = (svg) => {
   const defs = svg.append("defs");
 
-  const gradient = defs.append("linearGradient")
-    .attr("id", "blue-gradient")
+  const gradientGreen = defs.append("linearGradient")
+    .attr("id", "orange-gradient")
     .attr("x1", "0%")
     .attr("y1", "0%")
     .attr("x2", "100%")
     .attr("y2", "0%");
-
-  gradient.append("stop")
+  gradientGreen.append("stop")
     .attr("offset", "0%")
-    .attr("stop-color", "#08b3e5");
-
-  gradient.append("stop")
-    .attr("offset", "50%")
-    .attr("stop-color", "#1d80af");
-
-  gradient.append("stop")
+    .attr("stop-color", "#D76572");
+  gradientGreen.append("stop")
     .attr("offset", "100%")
-    .attr("stop-color", "#1c61b1");
+    .attr("stop-color", "#FED44B");
+
+  const gradientBlue = defs.append("linearGradient")
+    .attr("id", "green-gradient")
+    .attr("x1", "0%")
+    .attr("y1", "0%")
+    .attr("x2", "100%")
+    .attr("y2", "0%");
+  gradientBlue.append("stop")
+    .attr("offset", "0%")
+    .attr("stop-color", "#FED44B");
+  gradientBlue.append("stop")
+    .attr("offset", "100%")
+    .attr("stop-color", "#13b586");
 };

@@ -28,8 +28,8 @@
 
 .pageHeaderNavButton {
   margin: 0 10px;
-  background: linear-gradient(45deg, #1EA9AC, #34b9be, #61cbab, #77cdc2, #61cbab, #34b9be, #1EA9AC);
-  background-size: 150% 100%; /* Double the width to allow for smooth movement */
+  background: linear-gradient(45deg, #D76572,  #FED44B,  #13b586);
+  background-size: 200% 100%; /* Double the width to allow for movement */
   background-position: left;  /* Start position */
   transition: background-position 1s ease; /* Smooth transition for background position */
   border: none;

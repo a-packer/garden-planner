@@ -10,9 +10,9 @@
   display: none;
 }
 
-.plant-list-button {
-  background: linear-gradient(45deg, #08b3e5, #1D80AF, #1C61B1,#1D80AF, #08b3e5);
-  background-size: 150% 100%; /* Double the width to allow for smooth movement */
+.plant-list-button {  
+  background: linear-gradient(45deg, #13b586, #FED44B, #D76572);
+  background-size: 200% 100%; /* Double the width to allow for movement */
   background-position: left;  /* Start position */
   border: none;
   padding: 10px 20px;

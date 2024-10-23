@@ -1,6 +1,12 @@
 import { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
-import {getStartingDate, getPlantOutDate, createXAxis, createMonthLabels, createBlueGradient} from './HelperFunctions';
+import {
+  getStartingDate,
+  getPlantOutDate,
+  createXAxis,
+  createMonthLabels,
+  createGradients
+} from './HelperFunctions';
 
 const BarChart = ({ data, frostDate }) => { 
 
@@ -14,7 +20,7 @@ const BarChart = ({ data, frostDate }) => {
     // clears the previous d3 chart (so we aren't seeing a new additional chart every time we re-render)
     d3.select(ref.current).selectAll('*').remove();
     
-    const width = 600; const height = 200; const padding = 10;
+    const width = 900; const height = 400; const padding = 10;
     const svg = d3.select(ref.current)
     .append("svg")
     .attr("width", width)
@@ -42,20 +48,20 @@ const BarChart = ({ data, frostDate }) => {
         // left hand part of bar, before plantOutDate
         fullBar.append("rect")
           .attr("x", startPoint)
-          .attr("y", i * 20)
+          .attr("y", i * 50)
           .attr("width", plantTransplantPoint - startPoint) // go to change plant or transplant point
-          .attr("height", 15)
-          .attr("fill", "url(#blue-gradient)");
+          .attr("height", 40)
+          .attr("fill", "url(#orange-gradient)");
         // right hand part of bar after plantOutDate
         fullBar.append("rect")
           .attr("x", plantTransplantPoint) // begin new color at change point
-          .attr("y", i * 20)
+          .attr("y", i * 50)
           .attr("width", endPoint - plantTransplantPoint) // continue till end of harvest date
-          .attr("height", 15)
-          .attr("fill", "green");       
+          .attr("height", 40)
+          .attr("fill", "url(#green-gradient)");       
       });
 
-      createBlueGradient(svg);
+      createGradients(svg);
       createXAxis(svg, xScale, height, padding);
       createMonthLabels(svg, xScale, height);
         
