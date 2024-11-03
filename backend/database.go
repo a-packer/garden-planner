@@ -2,6 +2,7 @@ package backend
 
 import (
 	"database/sql"
+	"encoding/json"
 	"errors"
 	"log"
 	"os"
@@ -17,6 +18,7 @@ func InitDB() (*sql.DB, error) {
 	}
 
 	log.Println("Creating sqlite-database.db...")
+
 	file, err := os.Create("sqlite-database.db")
 	if err != nil {
 		log.Println("Error creating database file:", err)
@@ -47,19 +49,33 @@ func InitDB() (*sql.DB, error) {
 		return nil, err
 	}
 
-	// // INSERT AND DISPLAY RECORDS for testing
-	if err := InsertPlant(db, "Basil", 5, 1, 12); err != nil {
-		db.Close()
-		return nil, err
+	type Plant struct {
+		Species     string `json:"species"`
+		NumWeeksIn  int    `json:"numWeeksIn"`
+		WeeksRelOut int    `json:"weeksRelOut"`
+		TotalGrowth int    `json:"totalGrowth"`
 	}
-	if err := InsertPlant(db, "Beets", 5, -2, 20); err != nil {
-		db.Close()
-		return nil, err
+
+	jsonData, err := os.ReadFile("plants.json")
+	if err != nil {
+		log.Fatalf("Failed to read JSON file: %v", err)
 	}
-	if err := InsertPlant(db, "Tomato", 7, 2, 14); err != nil {
-		db.Close()
-		return nil, err
+
+	var plants []Plant
+	if err := json.Unmarshal(jsonData, &plants); err != nil {
+		log.Fatalf("Error parsing JSON data: %v", err)
 	}
+
+	for _, plant := range plants {
+		_, err := db.Exec("INSERT INTO plants (species, numWeeksIn, weeksRelOut, totalGrowth) VALUES (?, ?, ?, ?)",
+			plant.Species, plant.NumWeeksIn, plant.WeeksRelOut, plant.TotalGrowth)
+		if err != nil {
+			log.Printf("Error inserting plant %s: %v", plant.Species, err)
+		}
+	}
+
+	log.Println("Data transfer complete!")
+
 	if err := DisplayPlants(db); err != nil {
 		db.Close()
 		return nil, err
