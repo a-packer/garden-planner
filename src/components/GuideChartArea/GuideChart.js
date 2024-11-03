@@ -20,14 +20,14 @@ const BarChart = ({ data, frostDate }) => {
     // clears the previous d3 chart (so we aren't seeing a new additional chart every time we re-render)
     d3.select(ref.current).selectAll('*').remove();
     
-    const width = 900; const height = 400; const padding = 10;
+    const width = window.innerWidth - 100; const height = 350; const padding = 10;
     const svg = d3.select(ref.current)
     .append("svg")
     .attr("width", width)
     .attr("height", height);
 
     const xScale = d3.scaleTime()
-      .domain([new Date(2000, 1, 1), new Date(2000, 8, 1)])
+      .domain([new Date(2000, 0, 1), new Date(2000, 9, 1)])
       .range([0, width]);
 
     svg.selectAll("g")

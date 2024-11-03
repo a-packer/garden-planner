@@ -17,13 +17,13 @@ export const Plant = ({plant, selectedPlants, setSelectedPlants}) => {
   }
   return (
     <div className="plant-wrapper">
-      <label>{plant.species}</label>
-       <input
+      <input
         type="checkbox"
         key={plant.species}
         name={plant.species} 
         onChange={updateSelectedPlants}
       />
+      <label>{plant.species}</label>
     </div>
   )
     

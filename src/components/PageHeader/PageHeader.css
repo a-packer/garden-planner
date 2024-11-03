@@ -2,14 +2,14 @@
   display: flex;
   padding: 25px 35px 15px 35px;
   margin-bottom: 20px;
-  border-bottom: 5px solid #1D80AF;
+  border-bottom: 5px solid #D76572;
   align-items: center;
 }
 
 .tableHeaderTitle {
   background: none;
   font-size: 35px;
-  color:  #1D80AF; 
+  color: #13b586; 
   font-weight: bold;
   border: none;
   position: relative;
@@ -27,9 +27,9 @@
 }
 
 .pageHeaderNavButton {
-  margin: 0 10px;
-  background: linear-gradient(45deg, #D76572,  #FED44B,  #13b586);
-  background-size: 200% 100%; /* Double the width to allow for movement */
+  margin: 0 10px;  
+  background: linear-gradient(90deg, #D76572, #d79665, #FED44B, #29b513, #13b586);
+  background-size: 250% 100%; /* Double the width to allow for movement */
   background-position: left;  /* Start position */
   transition: background-position 1s ease; /* Smooth transition for background position */
   border: none;
@@ -38,7 +38,7 @@
   font-size: 16px;
   color: white;
 }
+
 .pageHeaderNavButton:hover {
   background-position: right; /* On hover, move the gradient */
 }
-

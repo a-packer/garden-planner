@@ -4,6 +4,8 @@
 
 .plantList-form {
   padding: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .plantList-form-hidden {
@@ -11,8 +13,8 @@
 }
 
 .plant-list-button {  
-  background: linear-gradient(45deg, #13b586, #FED44B, #D76572);
-  background-size: 200% 100%; /* Double the width to allow for movement */
+  background: linear-gradient(90deg, #13b586, #29b513, #FED44B, #d79665, #D76572);
+  background-size: 230% 100%; /* Double the width to allow for movement */
   background-position: left;  /* Start position */
   border: none;
   padding: 10px 20px;
