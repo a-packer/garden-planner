@@ -1,8 +1,10 @@
 TODO: 
 - create link to the planting schedule page in the page header to the left of the Login/Reg buttons
+- save garden plan data to individual users
 - garden plan page
   - list of all plants (checkboxes)
   - chart with selected list of plants (guide chart)
+- use react-router-dom instead of state to manage routing
 
 
 ## Available Scripts
