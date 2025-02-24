@@ -8,21 +8,25 @@ const PlantList = ({selectedPlants, setSelectedPlants}) => {
 
   const displayPlants = async (e) => {
     e.preventDefault();
+    console.log("Fetching plants...");
     try {
       const response = await fetch('/plants', {
         method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        }
+        headers: { 'Content-Type': 'application/json' }
       });
       if (response.ok) {
-        setListOfPlants(await response.json())
+        const data = await response.json();
+        console.log("Fetched Data:", data); 
+        setListOfPlants(data);
+      } else {
+        console.error("Server returned non-OK status:", response.status);
       }
     } catch (error) {
-      console.log('Error with fetching plants');
+      console.log('Error with fetching plants', error);
     }
-    setPlantDisplayed(true)
-  };
+
+    setPlantDisplayed(true);
+};
 
   const hidePlants = () => {
     setPlantDisplayed(false)

@@ -93,7 +93,6 @@ func VerifyLogin(db *sql.DB, username, password string) bool {
 	return err == nil
 }
 
-// GetUserByName retrieves a user from the database by their username
 func GetUserByName(db *sql.DB, username string) (int, string, error) {
 	var id int
 	var password string

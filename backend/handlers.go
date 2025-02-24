@@ -10,7 +10,6 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-// RegisterHandler handles user registration requests
 func RegisterHandler(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var user struct {
@@ -39,7 +38,6 @@ func RegisterHandler(db *sql.DB) http.HandlerFunc {
 
 }
 
-// LoginHandler handles user login requests
 func LoginHandler(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var user struct {
@@ -65,7 +63,6 @@ func LoginHandler(db *sql.DB) http.HandlerFunc {
 	}
 }
 
-// GetAllPlantsHandler handles requests for retrieving all plants
 func GetAllPlantsHandler(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		rows, err := db.Query("SELECT id, species FROM plants")
@@ -111,7 +108,6 @@ func GetPlantHandler(db *sql.DB) http.HandlerFunc {
 		vars := mux.Vars(r)
 		species := vars["plant"]
 
-		// Define a Plant struct to hold the query result
 		var plant struct {
 			ID          int    `json:"id"`
 			Species     string `json:"species"`
@@ -120,13 +116,11 @@ func GetPlantHandler(db *sql.DB) http.HandlerFunc {
 			TotalGrowth int    `json:"totalGrowth"`
 		}
 
-		// Query the database for the plant
 		query := "SELECT id, species, numWeeksIn, weeksRelOut, totalGrowth FROM plants WHERE species = ?"
 		err := db.QueryRow(query, species).Scan(
 			&plant.ID, &plant.Species, &plant.NumWeeksIn, &plant.WeeksRelOut, &plant.TotalGrowth,
 		)
 
-		// Handle errors
 		if err != nil {
 			if err == sql.ErrNoRows {
 				http.Error(w, "Plant not found", http.StatusNotFound)

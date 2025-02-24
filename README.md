@@ -12,6 +12,8 @@ TODO:
 In the project directory, you can run:
 
 ### `npm start`
+### `go run main.go` to initialize and set up the database
+### make sure package.json has `"proxy": "http://localhost:8080"` otherwise the API calls will go to localhost:3000 instead of the backend server on 8080
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
