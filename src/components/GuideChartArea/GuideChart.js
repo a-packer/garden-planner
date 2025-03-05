@@ -8,10 +8,10 @@ import {
   createGradients
 } from './HelperFunctions';
 
-const BarChart = ({ data, frostDate }) => { 
+const BarChart = ({ selectedPlantsData, frostDate }) => { 
 
   // d3 directly manipulates the actual DOM (not the virtual DOM that react manages)
-  // useRef allows us to directly reference the specific DOM element where D3 should apply changes
+  // useRef allows us to directly reference a specific DOM element that D3 can apply changes to
   const ref = useRef();
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const BarChart = ({ data, frostDate }) => {
       .range([0, width]);
 
     svg.selectAll("g")
-      .data(data)
+      .data(selectedPlantsData)
       .enter()
       .append("g")
       .each(function(d, i) { // for each selected plant
@@ -65,7 +65,7 @@ const BarChart = ({ data, frostDate }) => {
       createXAxis(svg, xScale, height, padding);
       createMonthLabels(svg, xScale, height);
         
-    }, [data, frostDate]
+    }, [selectedPlantsData, frostDate]
   )
   return <div ref={ref}></div>; // react assigns this div to ref.current
 };

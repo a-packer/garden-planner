@@ -29,7 +29,8 @@ func main() {
 	// Serve the React app
 	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./build/")))
 
-	fmt.Println("Server is listening on :8080...")
+	fmt.Println("Server is listening on :8080...") // important! go is listening on port 8080. react is on localhost 3000. need a proxy in package.json so frontend can query backend port
+	
 	if err := http.ListenAndServe(":8080", router); err != nil {
 		log.Fatalf("Server failed to start: %v", err)
 	}

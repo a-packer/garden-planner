@@ -25,7 +25,7 @@ const GuideChartArea = ({selectedPlants, frostDate}) => {
       <div className="guidechart-chart-wrapper">
         <TableHeader />
         <div className="svg-wrapper">
-          <GuideChart data={selectedPlantData} frostDate={frostDate} />
+          <GuideChart selectedPlantsData={selectedPlantData} frostDate={frostDate} />
         </div>    
       </div>
     </div>

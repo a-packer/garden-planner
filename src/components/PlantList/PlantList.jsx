@@ -6,9 +6,8 @@ const PlantList = ({selectedPlants, setSelectedPlants}) => {
   const [listOfPlants, setListOfPlants] = useState([])
   const [plantsDisplayed, setPlantDisplayed] = useState(false)
 
-  const displayPlants = async (e) => {
+  const displayPlants = async (e) => { // make api request to fetch plant data
     e.preventDefault();
-    console.log("Fetching plants...");
     try {
       const response = await fetch('/plants', {
         method: 'GET',
@@ -16,7 +15,6 @@ const PlantList = ({selectedPlants, setSelectedPlants}) => {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log("Fetched Data:", data); 
         setListOfPlants(data);
       } else {
         console.error("Server returned non-OK status:", response.status);
@@ -37,9 +35,9 @@ const PlantList = ({selectedPlants, setSelectedPlants}) => {
     <div className="plantList-wrapper">
 
      <button 
-      onClick={plantsDisplayed ? hidePlants : displayPlants} 
-      className="plant-list-button">
-      {plantsDisplayed ? 'Hide Plant List' : 'Display Plant List'}
+        onClick={plantsDisplayed ? hidePlants : displayPlants} 
+        className="plant-list-button">
+        {plantsDisplayed ? 'Hide Plant List' : 'Display Plant List'}
      </button>
 
      <form className={plantsDisplayed ? "plantList-form" : "plantList-form-hidden"}>
